@@ -4,7 +4,6 @@ import equal from "fast-deep-equal";
 import Question from "../Question/Question";
 import { fetchQuestions } from "../../actionCreators";
 
-
 import "./quiz.scss";
 
 class Quiz extends React.Component {
@@ -35,14 +34,16 @@ class Quiz extends React.Component {
     );
   }
 
-  displayQuestions = (questions = []) => {
-    let questionsUI = [];
+  displayQuestions = questions => {
+    if (questions && questions.length > 0) {
+      let questionsUI = [];
 
-    questionsUI = questions.map((question, i) => {
-      return <Question q={question} key={i} />;
-    });
+      questionsUI = questions.map((question, i) => {
+        return <Question q={question} key={i} />;
+      });
 
-    return questionsUI;
+      return questionsUI;
+    }
   };
 }
 

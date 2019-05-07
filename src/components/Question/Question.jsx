@@ -5,19 +5,33 @@ import "./question.scss";
 export default class Question extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      userAnswer: "",
-      answerState: 0
-    };
-    this.answers = this.shuffleOptions(this.answersBfrShuffle);
+    
+    if (props.q.incorrect_answers && props.q.correct_answer) {
+      let incorrectAnswers = props.q.incorrect_answers;
+      let answersBfrShuffle = [...incorrectAnswers, props.q.correct_answer];
+      let answers = this.shuffleOptions(answersBfrShuffle);
+
+      this.state = {
+        userAnswer: "",
+        answerState: 0,
+        answers
+      };
+    }else{
+      this.state = {
+        answerState :0
+      }
+    }
+
   }
+
   getAnswers = answers => {
     if (answers) {
       return answers.map((answer, i) => {
         return (
           <div className="answer" key={i}>
             <Form.Group controlId="formBasicChecbox">
-              <Form.Check className="form-check"
+              <Form.Check
+                className="form-check"
                 inline
                 label={answer}
                 type="radio"
@@ -49,49 +63,48 @@ export default class Question extends React.Component {
     });
   };
 
-  getAnswerState=()=>{
-    switch(this.state.answerState){
-      case 0:{
+  getAnswerState = () => {
+    switch (this.state.answerState) {
+      case 0: {
         return "#FFF";
       }
-      case 1 : {
-        return "#F41212"
+      case 1: {
+        return "#FA7171";
       }
-      case 2 : {
-        return "#59E670"
+      case 2: {
+        return "#59E670";
       }
       default: {
-        return "#FFF"
+        return "#FFF";
       }
-
     }
-  }
-  shuffleOptions=(array)=>{
-    var currentIndex = array.length , temp , rndIndex;
-    while(0 !== currentIndex){
-      rndIndex = Math.floor(Math.random()* currentIndex);
+  };
+
+  shuffleOptions = array => {
+    var currentIndex = array.length,
+      temp,
+      rndIndex;
+    while (0 !== currentIndex) {
+      rndIndex = Math.floor(Math.random() * currentIndex);
       currentIndex -= 1;
       temp = array[currentIndex];
       array[currentIndex] = array[rndIndex];
       array[rndIndex] = temp;
     }
     return array;
-  }
+  };
 
   render() {
     if (this.props.q.incorrect_answers) {
-      const question = this.props.q.question;
-      let incorrectAnswers = this.props.q.incorrect_answers;
-      let answersBfrShuffle = [...incorrectAnswers, this.props.q.correct_answer];
-     
-      console.log(this.answers);
       return (
         <div
           className="questionContainer"
           style={{ backgroundColor: this.getAnswerState() }}
         >
-          <div className="question">{question}</div>
-          <div className="answerContainer">{this.getAnswers(this.answers)}</div>
+          <div className="question">{this.props.q.question}</div>
+          <div className="answerContainer">
+            {this.getAnswers(this.state.answers)}
+          </div>
         </div>
       );
     } else {
