@@ -1,7 +1,14 @@
 
+.easy {
+  &:hover {
+    background-color: #337ab7;
+  }
+}
 
-.easy{
-    &:hover{
-      background-color: #337ab7;
+.container {
+  ul {
+    li{
+      cursor: pointer;
     }
   }
+}

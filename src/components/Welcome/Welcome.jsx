@@ -10,7 +10,7 @@ class Welcome extends React.Component {
       difficulty: "",
       colorEasy: "",
       colorMedium: "",
-      colorDifficulty:""
+      colorDifficulty: ""
     };
   }
 
@@ -27,7 +27,12 @@ class Welcome extends React.Component {
               style={{ backgroundColor: this.state.colorEasy }}
               onClick={() => {
                 //this.showQuiz("easy");
-                this.setState({ difficulty: "easy", colorEasy: "#337ab7",colorMedium:"#FFF",colorDifficulty:"#FFF" });
+                this.setState({
+                  difficulty: "easy",
+                  colorEasy: "#337ab7",
+                  colorMedium: "#FFF",
+                  colorDifficulty: "#FFF"
+                });
               }}
             >
               Easy
@@ -37,7 +42,12 @@ class Welcome extends React.Component {
               className="easy"
               style={{ backgroundColor: this.state.colorMedium }}
               onClick={() => {
-                this.setState({ difficulty: "medium", colorEasy: "#FFF",colorMedium:"#337ab7",colorDifficulty:"#FFF" });
+                this.setState({
+                  difficulty: "medium",
+                  colorEasy: "#FFF",
+                  colorMedium: "#337ab7",
+                  colorDifficulty: "#FFF"
+                });
               }}
             >
               Medium
@@ -47,14 +57,18 @@ class Welcome extends React.Component {
               className="easy"
               style={{ backgroundColor: this.state.colorDifficulty }}
               onClick={() => {
-                this.setState({ difficulty: "difficult", colorEasy: "#FFF",colorMedium:"#FFF",colorDifficulty:"#337ab7" });
+                this.setState({
+                  difficulty: "difficult",
+                  colorEasy: "#FFF",
+                  colorMedium: "#FFF",
+                  colorDifficulty: "#337ab7"
+                });
               }}
             >
-              {" "}
               Difficult
             </ListGroup.Item>
           </ListGroup>
-          ;
+
           <p>
             <Button variant="primary" onClick={this.handleSubmit}>
               Start Quiz

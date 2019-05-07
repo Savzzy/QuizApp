@@ -11,9 +11,13 @@
     font-size: 20px;
   }
   .answerContainer {
-    margin: 15px 0;
+    margin: 4px 15px 0;
     .answer {
         margin-bottom: 10px;
     }
+  }
+  .input[type=radio]{
+    margin: 4px 14px 0px;
+    padding: 10px;
   }
 }
